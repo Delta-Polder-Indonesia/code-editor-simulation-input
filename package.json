@@ -13,13 +13,11 @@
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    
     "electron:dev": "concurrently -k \"npm run dev\" \"wait-on http://localhost:5173 && node scripts/electron-dev.js\"",
     "electron:build": "node scripts/electron-build.js",
     "electron:build:win": "node scripts/electron-build.js win32 x64",
     "electron:build:mac": "node scripts/electron-build.js darwin x64",
     "electron:build:linux": "node scripts/electron-build.js linux x64",
-    
     "dist": "npm run build && npm run electron:build",
     "dist:win": "npm run build && npm run electron:build:win",
     "dist:mac": "npm run build && npm run electron:build:mac",
@@ -44,7 +42,7 @@
     "tailwind-merge": "3.4.0",
     "tailwindcss": "4.1.17",
     "typescript": "5.9.3",
-    "vite": "7.3.2",
+    "vite": "^7.3.6",
     "vite-plugin-singlefile": "2.3.0",
     "wait-on": "^9.0.10"
   },
