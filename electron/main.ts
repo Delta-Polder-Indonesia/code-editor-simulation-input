@@ -6,10 +6,9 @@ import * as path from 'path';
 // Auto Code Typer Desktop Application
 // ============================================
 
-// Handle creating/removing shortcuts on Windows when installing/uninstalling
-if (require('electron-squirrel-startup')) {
-  app.quit();
-}
+// NOTE:
+// We intentionally avoid electron-squirrel-startup here so dev mode
+// can run without adding extra installer-only dependency.
 
 // Keep a global reference of the window object
 let mainWindow: BrowserWindow | null = null;

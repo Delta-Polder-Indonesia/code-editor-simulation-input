@@ -18,41 +18,34 @@
       "zip"
     ],
     "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
-    "category": "public.app-category.developer-tools",
-    "icon": "build/icon.icns"
+    "category": "public.app-category.developer-tools"
   },
   "win": {
     "target": [
       {
         "target": "nsis",
-        "arch": ["x64", "ia32"]
+        "arch": ["x64"]
       },
       {
         "target": "portable",
         "arch": ["x64"]
       }
     ],
-    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
-    "icon": "build/icon.ico"
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}"
   },
   "linux": {
     "target": [
       "AppImage",
-      "deb",
-      "rpm"
+      "deb"
     ],
     "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
-    "category": "Development",
-    "icon": "build/icons"
+    "category": "Development"
   },
   "nsis": {
     "oneClick": false,
     "perMachine": false,
     "allowToChangeInstallationDirectory": true,
     "deleteAppDataOnUninstall": false,
-    "installerIcon": "build/icon.ico",
-    "uninstallerIcon": "build/icon.ico",
-    "installerHeaderIcon": "build/icon.ico",
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true,
     "shortcutName": "Auto Code Typer"

@@ -57,6 +57,11 @@ async function main() {
 
   // Step 3: Compile Electron TypeScript
   execCommand('npx tsc -p electron/tsconfig.json', 'Compiling Electron TypeScript');
+  const distElectronDir = path.join(__dirname, '../dist-electron');
+  fs.writeFileSync(
+    path.join(distElectronDir, 'package.json'),
+    JSON.stringify({ type: 'commonjs' }, null, 2)
+  );
   console.log('');
 
   // Step 4: Create build directory for icons (if not exists)
@@ -70,9 +75,26 @@ async function main() {
   const platform = process.argv[2] || process.platform;
   const arch = process.argv[3] || process.arch;
   
+  let platformFlag;
+  switch (platform) {
+    case 'win32':
+    case 'win':
+      platformFlag = '--win';
+      break;
+    case 'darwin':
+    case 'mac':
+      platformFlag = '--mac';
+      break;
+    case 'linux':
+      platformFlag = '--linux';
+      break;
+    default:
+      platformFlag = '';
+  }
+  
   log(`Building for platform: ${platform}, arch: ${arch}`, 'cyan');
   execCommand(
-    `npx electron-builder --${platform === 'win32' ? 'win' : platform === 'darwin' ? 'mac' : 'linux'} --${arch}`,
+    `npx electron-builder ${platformFlag} --${arch}`,
     'Building Electron package'
   );
   console.log('');
