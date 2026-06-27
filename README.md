@@ -87,12 +87,78 @@ cd auto-code-typer
 # Install dependencies
 npm install
 
-# Start development server
+# Start development server (Web)
 npm run dev
 
-# Build for production
+# Build for production (Web)
 npm run build
 ```
+
+---
+
+## 🖥️ Electron Desktop App
+
+### Development Mode
+
+```bash
+# Start Electron with hot reload
+npm run electron:dev
+```
+
+This will:
+1. Start Vite dev server on http://localhost:5173
+2. Compile Electron TypeScript files
+3. Launch Electron pointing to the dev server
+
+### Build for Distribution
+
+```bash
+# Build for current platform
+npm run dist
+
+# Build for specific platforms
+npm run dist:win     # Windows (NSIS installer + portable)
+npm run dist:mac     # macOS (DMG + ZIP)
+npm run dist:linux   # Linux (AppImage + DEB + RPM)
+```
+
+### Output Files
+
+After building, find the installers in `/release` folder:
+
+| Platform | Files |
+|----------|-------|
+| Windows | `.exe` (NSIS installer), `.exe` (portable) |
+| macOS | `.dmg`, `.zip` |
+| Linux | `.AppImage`, `.deb`, `.rpm` |
+
+### Adding App Icons
+
+Place your icons in the `/build` folder:
+
+```
+build/
+├── icon.icns      # macOS (512x512 or 1024x1024)
+├── icon.ico       # Windows (256x256)
+└── icons/         # Linux
+    ├── 16x16.png
+    ├── 32x32.png
+    ├── 48x48.png
+    ├── 64x64.png
+    ├── 128x128.png
+    ├── 256x256.png
+    └── 512x512.png
+```
+
+### Electron Features
+
+| Feature | Description |
+|---------|-------------|
+| **Native Menu** | File, Edit, View, Controls, Help menus |
+| **Keyboard Shortcuts** | Same as web + native menu accelerators |
+| **File Dialogs** | Native open/save file dialogs |
+| **Auto Updates** | Ready for electron-updater integration |
+| **Cross Platform** | Windows, macOS, Linux support |
 
 ---
 

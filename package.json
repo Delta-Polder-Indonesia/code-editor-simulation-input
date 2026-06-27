@@ -1,18 +1,33 @@
 {
-  "name": "react-vite-tailwind",
+  "name": "auto-code-typer",
+  "productName": "Auto Code Typer",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "VS Code-style code typing animation tool",
+  "author": "Your Name",
+  "license": "MIT",
+  "main": "dist-electron/main.js",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    
+    "electron:dev": "concurrently -k \"npm run dev\" \"wait-on http://localhost:5173 && node scripts/electron-dev.js\"",
+    "electron:build": "node scripts/electron-build.js",
+    "electron:build:win": "node scripts/electron-build.js win32 x64",
+    "electron:build:mac": "node scripts/electron-build.js darwin x64",
+    "electron:build:linux": "node scripts/electron-build.js linux x64",
+    
+    "dist": "npm run build && npm run electron:build",
+    "dist:win": "npm run build && npm run electron:build:win",
+    "dist:mac": "npm run build && npm run electron:build:mac",
+    "dist:linux": "npm run build && npm run electron:build:linux"
   },
   "dependencies": {
-    "clsx": "2.1.1",
     "react": "19.2.6",
     "react-dom": "19.2.6",
-    "tailwind-merge": "3.4.0",
     "zustand": "^5.0.14"
   },
   "devDependencies": {
@@ -21,9 +36,19 @@
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.1",
+    "clsx": "2.1.1",
+    "concurrently": "^9.2.3",
+    "cross-env": "^10.1.0",
+    "electron": "^41.7.1",
+    "electron-builder": "^26.15.3",
+    "tailwind-merge": "3.4.0",
     "tailwindcss": "4.1.17",
     "typescript": "5.9.3",
     "vite": "7.3.2",
-    "vite-plugin-singlefile": "2.3.0"
+    "vite-plugin-singlefile": "2.3.0",
+    "wait-on": "^9.0.10"
+  },
+  "build": {
+    "extends": "electron-builder.json"
   }
 }

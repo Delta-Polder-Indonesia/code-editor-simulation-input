@@ -3,3 +3,4 @@
 // ============================================
 
 export { useCursorBlink } from './useCursorBlink';
+export { useElectron, useElectronMenuEvents, isElectronEnvironment } from './useElectron';
