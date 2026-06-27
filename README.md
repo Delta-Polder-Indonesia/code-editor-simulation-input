@@ -1,282 +1,697 @@
-# ⌨️ Auto Code Typer — VS Code Style
+# 🎬 Auto Code Typer
 
-<p align="center">
-  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React" />
-  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
-  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
-</p>
+<div align="center">
 
-<p align="center">
-  <b>Simulasi auto-typing code yang terlihat seperti manusia sedang coding di VS Code.</b><br/>
-  Paste script anda, lalu tampilkan seolah-olah anda mengetik secara manual — lengkap dengan typo, koreksi, IntelliSense popup, dan syntax highlighting!
-</p>
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![React](https://img.shields.io/badge/React-18.x-61DAFB.svg?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6.svg?logo=typescript)
+![Tailwind](https://img.shields.io/badge/Tailwind-4.x-38B2AC.svg?logo=tailwindcss)
+![Zustand](https://img.shields.io/badge/Zustand-5.x-orange.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
----
+**VS Code-style code typing animation tool dengan human-like realism**
 
-## 🎥 Demo
+[Demo](#demo) • [Features](#features) • [Installation](#installation) • [Architecture](#architecture) • [API Reference](#api-reference)
 
-Aplikasi ini menampilkan interface persis seperti VS Code dengan kemampuan auto-typing yang sangat realistis. Cocok untuk:
-
-- 📹 **Membuat video tutorial coding** — tampilkan seakan-akan Anda sedang mengetik langsung
-- 🎬 **Screen recording** — buat konten yang terlihat natural
-- 📊 **Presentasi** — demo coding secara live
-- 🎓 **Edukasi** — tunjukkan proses menulis code step-by-step
+</div>
 
 ---
 
-## ✨ Fitur-Fitur
+## 📋 Table of Contents
 
-### 🖥️ Tampilan VS Code yang Akurat
-| Komponen | Deskripsi |
-|----------|-----------|
-| **Title Bar** | Bar atas dengan tombol traffic light (merah/kuning/hijau) |
-| **Menu Bar** | Menu File, Edit, Selection, View, Go, Run, Terminal, Help |
-| **Activity Bar** | Sidebar icon untuk Explorer, Search, Git, Extensions |
-| **Explorer Panel** | Panel file tree dengan folder structure |
-| **Tab Editor** | Tab file yang sedang aktif dengan icon |
-| **Breadcrumb** | Path navigasi file |
-| **Line Numbers** | Nomor baris yang mengikuti jumlah baris code |
-| **Minimap** | Preview minimap code di sisi kanan |
-| **Status Bar** | Bar bawah biru dengan informasi Ln/Col, encoding, bahasa |
-
-### ⌨️ Efek Ketikan Human-Like
-| Fitur | Deskripsi |
-|-------|-----------|
-| **Typo & Auto-Koreksi** | Kadang salah ketik (1-3 karakter), jeda seakan sadar, lalu backspace dan tulis ulang — persis seperti manusia! |
-| **Variasi Kecepatan** | Setiap karakter diketik dengan kecepatan berbeda-beda |
-| **Pause After Punctuation** | Jeda lebih lama setelah `.` `,` `;` `:` `{` `}` `(` `)` |
-| **Thinking Pause** | Sesekali jeda panjang seakan sedang berpikir |
-| **Fast Spaces** | Spasi berulang (indentasi) diketik lebih cepat |
-| **Newline Delay** | Jeda setelah Enter seakan membaca baris berikutnya |
-| **Nearby-Key Typos** | Karakter salah ketik sesuai posisi keyboard QWERTY yang berdekatan |
-
-### 💡 IntelliSense / Autocomplete
-| Fitur | Deskripsi |
-|-------|-----------|
-| **Popup Saran Code** | Muncul otomatis saat mengetik, persis seperti IntelliSense VS Code |
-| **Multi-Kategori** | Menampilkan keyword, function, method, variable, class, constant, module |
-| **Icon Per Tipe** | Setiap saran memiliki icon sesuai kategorinya |
-| **Detail Panel** | Panel detail di bawah popup menampilkan signature/type |
-| **Kontekstual** | Saran berdasarkan kata yang sedang diketik + identifier dari code |
-| **Database Lengkap** | 100+ saran built-in: JS/TS keywords, React hooks, DOM API, Array/String methods |
-| **Dynamic Suggestions** | Mendeteksi variabel/fungsi dari code yang sedang diketik |
-| **On/Off Toggle** | Bisa diaktifkan/nonaktifkan sesuai kebutuhan |
-
-### 🎨 Syntax Highlighting
-| Token | Warna | Contoh |
-|-------|-------|--------|
-| **Keywords** | 🔵 Biru | `const`, `function`, `return`, `import` |
-| **Strings** | 🟠 Orange | `"hello"`, `'world'`, `` `template` `` |
-| **Comments** | 🟢 Hijau | `// comment`, `/* block */` |
-| **Numbers** | 🟢 Hijau Muda | `42`, `3.14`, `0xFF` |
-| **Functions** | 🟡 Kuning | `console.log()`, `fetch()` |
-| **Booleans** | 🔵 Biru | `true`, `false`, `null`, `undefined` |
-| **Decorators** | 🟡 Kuning | `@Component`, `@Injectable` |
-| **JSX Tags** | 🔵 Biru | `<div>`, `<Component />` |
-
-### 🔊 Typing Sound (MP3 Upload)
-| Fitur | Deskripsi |
-|-------|-----------|
-| **Upload Audio** | Upload file MP3/audio apapun sebagai sound efek mengetik |
-| **Sync dengan Typing** | Sound otomatis play saat Start, pause saat Pause, stop saat selesai |
-| **Volume Control** | Slider volume 0% - 100% yang bisa diubah real-time |
-| **Loop Audio** | Toggle loop agar audio berulang untuk code panjang |
-| **Remove Audio** | Hapus audio yang sudah diupload kapan saja |
-| **Status Bar Info** | Ikon 🔊/🔇 di status bar menampilkan status audio saat ini |
-| **Format Support** | Mendukung MP3, WAV, OGG, dan format audio browser lainnya |
-
-### 🎮 Kontrol Lengkap
-| Tombol | Fungsi |
-|--------|--------|
-| ▶️ **Start** | Mulai mengetik dari awal + play audio |
-| ⏸️ **Pause** | Jeda pengetikan + pause audio |
-| ▶️ **Resume** | Lanjutkan dari jeda + resume audio |
-| ⏹️ **Stop** | Berhenti mengetik + stop audio |
-| ↺ **Reset** | Reset semua ke awal |
-
-### ⚙️ Pengaturan
-| Setting | Range | Deskripsi |
-|---------|-------|-----------| 
-| ⚡ **Speed** | 10ms - 200ms | Kecepatan ketikan per karakter |
-| 🖊 **Typo Rate** | 0% - 20% | Persentase kemungkinan typo |
-| 💡 **IntelliSense** | On / Off | Toggle popup autocomplete |
-| 🔊 **Typing Sound** | Upload MP3 | Sound efek yang sinkron dengan typing |
-| 🔉 **Volume** | 0% - 100% | Kontrol volume audio |
-| 🔁 **Loop** | On / Off | Audio loop untuk code panjang |
-| 📄 **File Name** | Custom | Nama file yang ditampilkan di tab & breadcrumb |
-
-### 📊 Info Tambahan
-- **Unlimited Code** — Tidak ada batasan panjang code yang bisa diketik
-- **Character & Line Counter** — Menampilkan jumlah karakter dan baris dari input code
-- **Progress Bar** — Menampilkan persentase penyelesaian
-- **Status Indicator** — Ready → Typing → Paused → Done
-- **Audio Status** — 🔊/🔇 di status bar menampilkan nama file audio yang sedang digunakan
-- **Ln/Col** — Posisi cursor (baris, kolom) real-time
-- **Language Detection** — Otomatis mendeteksi bahasa dari ekstensi file (`.tsx`, `.ts`, `.js`, `.jsx`, `.py`, `.css`, `.html`)
-- **Cursor Blinking** — Cursor berkedip realistis seperti editor asli
-- **Auto Scroll** — Otomatis scroll ke bawah saat mengetik
-- **Custom Scrollbar** — Scrollbar bergaya VS Code dark theme
-- **Toggle Sidebar** — Klik icon file untuk buka/tutup panel Explorer
+- [Overview](#overview)
+- [Features](#features)
+- [Demo](#demo)
+- [Installation](#installation)
+- [Project Architecture](#project-architecture)
+- [Folder Structure](#folder-structure)
+- [File Reference](#file-reference)
+- [State Management](#state-management)
+- [Customization](#customization)
+- [API Reference](#api-reference)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
-## 🚀 Cara Menggunakan
+## 🎯 Overview
 
-### 1. Clone Repository
+Auto Code Typer adalah aplikasi web yang mensimulasikan pengetikan kode secara real-time dengan tampilan VS Code. Cocok untuk:
+
+- 📹 **Membuat video tutorial coding**
+- 🎥 **Konten YouTube/TikTok programming**
+- 🎨 **Presentasi live coding**
+- 📚 **Demo aplikasi atau library**
+
+---
+
+## ✨ Features
+
+### Core Features
+- ⌨️ **Human-like Typing Animation** - Kecepatan bervariasi, jeda natural, dan typo realistis
+- 💡 **IntelliSense Simulation** - Autocomplete popup seperti VS Code
+- 🎨 **Syntax Highlighting** - Dukungan 20+ bahasa pemrograman
+- 🔊 **Background Audio** - Upload MP3 untuk efek suara keyboard
+
+### Editor Features
+- 📁 **File Tree** - Tampilan project explorer
+- 📍 **Line Numbers** - Nomor baris dinamis
+- 🗺️ **Minimap** - Preview kode di sebelah kanan
+- 📊 **Status Bar** - Informasi file dan progress
+
+### Control Features
+- ▶️ **Play/Pause/Stop** - Kontrol penuh atas animasi
+- ⚡ **Adjustable Speed** - Atur kecepatan typing (10-200ms)
+- ✏️ **Typo Rate** - Simulasi kesalahan ketik (0-20%)
+- 🔄 **Auto-scroll Vertical** - Scroll otomatis ke bawah mengikuti cursor
+- ↔️ **Auto-scroll Horizontal** - Scroll otomatis ke kanan untuk baris panjang
+- ⬅️ **Smart Scroll Reset** - Otomatis kembali ke kiri saat baris baru
+
+### Keyboard Shortcuts
+- `Ctrl+Enter` - Start typing animation
+- `Ctrl+P` - Pause/Resume typing
+- `Escape` - Stop typing
+- `Ctrl+B` - Toggle sidebar
+
+---
+
+## 🚀 Installation
+
 ```bash
-git clone https://github.com/username/auto-code-typer.git
+# Clone repository
+git clone https://github.com/yourusername/auto-code-typer.git
+
+# Navigate to directory
 cd auto-code-typer
-```
 
-### 2. Install Dependencies
-```bash
+# Install dependencies
 npm install
-```
 
-### 3. Jalankan Development Server
-```bash
+# Start development server
 npm run dev
-```
 
-### 4. Build untuk Production
-```bash
+# Build for production
 npm run build
 ```
 
-### 5. Gunakan Aplikasi
-1. **Paste code** di textarea pada panel Explorer (kiri) — panjang tak terbatas!
-2. **(Opsional)** Upload file **MP3/audio** untuk efek sound mengetik
-3. Atur **Speed**, **Typo Rate**, **Volume**, dan **IntelliSense** sesuai keinginan
-4. Ubah **File Name** jika perlu (misal: `app.tsx`, `index.js`, `main.py`)
-5. Klik tombol **▶️ Start** untuk mulai mengetik (audio otomatis ikut play!)
-6. Gunakan **⏸️ Pause** untuk jeda (audio juga pause), **⏹️ Stop** untuk berhenti
-7. Saat typing selesai, audio otomatis berhenti
-8. Rekam layar menggunakan screen recorder favorit Anda!
-
 ---
 
-## 🛠️ Tech Stack
-
-| Technology | Version | Deskripsi |
-|-----------|---------|-----------|
-| [React](https://react.dev/) | 18.x | UI Library |
-| [TypeScript](https://www.typescriptlang.org/) | 5.x | Type Safety |
-| [Vite](https://vitejs.dev/) | 6.x | Build Tool & Dev Server |
-| [Tailwind CSS](https://tailwindcss.com/) | 4.x | Utility-First CSS |
-
----
-
-## 📁 Struktur Project
+## 🏗️ Project Architecture
 
 ```
-📂 nama-folder-project/
-├── 📂 .github/
-│   └── 📂 workflows/
-│       └── 📄 deploy.yml   # Workflow GitHub Actions untuk build & deploy ke GitHub Pages
-├── 📁 src/
-│   ├── 📄 App.tsx          # Komponen utama aplikasi
-│   ├── 📄 main.tsx         # Entry point React
-│   └── 📄 index.css        # Tailwind CSS + custom styles
-├── 📄 index.html           # HTML template
-├── 📄 package.json         # Dependencies & scripts
-├── 📄 tsconfig.json        # TypeScript config
-├── 📄 vite.config.ts       # Vite config
-├── 📄 tailwind.config.js   # Tailwind config
-├── 📄 README.md            # Dokumentasi (file ini)
-└── 📄 LICENSE              # MIT License
+Feature-Based Architecture (Enterprise Scalable)
+├── Separation of Concerns
+├── Single Responsibility Principle
+├── Zero Prop Drilling (Zustand)
+├── Barrel Exports Pattern
+└── Production Ready Structure
+```
+
+### Technology Stack
+
+| Layer | Technology | Purpose |
+|-------|------------|---------|
+| **UI** | React 18 | Component library |
+| **Styling** | Tailwind CSS 4 | Utility-first CSS |
+| **State** | Zustand | Global state management |
+| **Types** | TypeScript 5 | Type safety |
+| **Build** | Vite | Fast bundling |
+
+---
+
+## 📁 Folder Structure
+
+```
+src/
+├── 📂 app/                      # Application Layer
+│   ├── 📄 App.tsx               # Root component (orchestrator)
+│   └── 📂 layouts/              # Layout components
+│       ├── 📄 index.ts          # Barrel export
+│       ├── 📄 AppLayout.tsx     # Main app wrapper
+│       └── 📄 MainEditorLayout.tsx # Editor area layout
+│
+├── 📂 features/                 # Feature Modules
+│   ├── 📄 index.ts              # Features barrel export
+│   │
+│   ├── 📂 editor/               # 🖥️ Editor Feature
+│   │   ├── 📄 index.ts          # Editor barrel export
+│   │   ├── 📂 components/       # Editor UI components
+│   │   ├── 📂 hooks/            # Editor-specific hooks
+│   │   ├── 📂 utils/            # Editor utilities
+│   │   └── 📂 types/            # Editor type definitions
+│   │
+│   ├── 📂 autocomplete/         # 💡 Autocomplete Feature
+│   │   ├── 📄 index.ts          # Autocomplete barrel export
+│   │   ├── 📂 components/       # Autocomplete popup
+│   │   ├── 📂 hooks/            # Autocomplete logic
+│   │   ├── 📂 constants/        # Suggestions database
+│   │   └── 📂 utils/            # Suggestion helpers
+│   │
+│   └── 📂 sidebar/              # 📁 Sidebar Feature
+│       ├── 📄 index.ts          # Sidebar barrel export
+│       └── 📂 components/       # Sidebar UI components
+│
+├── 📂 shared/                   # Shared Resources
+│   ├── 📄 index.ts              # Shared barrel export
+│   ├── 📂 components/           # Reusable components
+│   │   ├── 📂 icons/            # SVG icon components
+│   │   └── 📄 ...               # Shared UI components
+│   └── 📂 hooks/                # Shared custom hooks
+│
+├── 📂 store/                    # State Management
+│   ├── 📄 index.ts              # Store barrel export
+│   ├── 📄 editorStore.ts        # Editor settings state
+│   ├── 📄 audioStore.ts         # Audio state & controls
+│   └── 📄 typingStore.ts        # Typing animation state
+│
+├── 📂 lib/                      # Core Library
+│   ├── 📄 index.ts              # Lib barrel export
+│   ├── 📄 constants.ts          # App-wide constants
+│   └── 📄 utils.ts              # Utility functions
+│
+├── 📂 types/                    # Global Types
+│   └── 📄 index.ts              # Shared type definitions
+│
+├── 📄 main.tsx                  # Application entry point
+└── 📄 index.css                 # Global styles (Tailwind)
 ```
 
 ---
 
-## 🤝 Kontribusi
+## 📚 File Reference
 
-Kontribusi sangat diterima! Silakan:
+### 🎯 Application Layer (`src/app/`)
 
-1. **Fork** repository ini
-2. Buat **branch** baru (`git checkout -b feature/fitur-baru`)
-3. **Commit** perubahan (`git commit -m 'Tambah fitur baru'`)
-4. **Push** ke branch (`git push origin feature/fitur-baru`)
-5. Buat **Pull Request**
+#### `App.tsx`
+**Purpose:** Root orchestrator component
 
-### Ide Fitur yang Bisa Ditambahkan
-- [ ] Multi-tab editor (buka beberapa file sekaligus)
-- [ ] Support tema Light Mode
-- [ ] Export recording sebagai GIF/Video
-- [ ] Keyboard shortcut (Ctrl+Enter untuk start, dll)
-- [ ] Support lebih banyak bahasa (Python, Java, C++, dll)
-- [ ] Terminal panel dengan fake output
-- [ ] Custom font size
-- [ ] Save/Load konfigurasi
-- [ ] Multi-cursor simulation
-- [ ] Git diff view simulation
+```typescript
+// Hanya 30 baris - tidak ada business logic
+// Tugas: Compose semua feature components
+function App() {
+  return (
+    <AppLayout>
+      <AutocompletePopup />
+      <ActivityBar />
+      <Sidebar />
+      <MainEditorLayout />
+    </AppLayout>
+  );
+}
+```
 
----
+#### `layouts/AppLayout.tsx`
+**Purpose:** Main application wrapper dengan TitleBar dan MenuBar
 
-## 📝 Changelog
+| Props | Type | Description |
+|-------|------|-------------|
+| `children` | `ReactNode` | Content to render |
 
-### v1.0.0 (Initial Release)
-- ✅ VS Code-like interface
-- ✅ Human-like typing simulation
-- ✅ Typo & auto-correction
-- ✅ Syntax highlighting (tokenizer-based)
-- ✅ IntelliSense / Autocomplete popup
-- ✅ Adjustable speed & typo rate
-- ✅ Start / Pause / Resume / Stop controls
-- ✅ Progress bar & status indicator
-- ✅ Custom file name
-- ✅ Auto scroll
-- ✅ Cursor blinking
-- ✅ Minimap preview
-- ✅ File tree in explorer
-- ✅ Responsive layout
+#### `layouts/MainEditorLayout.tsx`
+**Purpose:** Editor area layout dengan TabBar, Breadcrumb, CodeDisplay, Minimap, StatusBar
 
 ---
 
-## ⚠️ Disclaimer
+### 🖥️ Editor Feature (`src/features/editor/`)
 
-Aplikasi ini dibuat untuk tujuan edukasi dan pembuatan konten. Pastikan Anda:
-- Tidak menggunakan untuk menipu orang lain bahwa Anda sedang live coding
-- Mencantumkan kredit jika digunakan dalam video tutorial
-- Menggunakan dengan etika dan bertanggung jawab
+#### `components/CodeDisplay.tsx`
+**Purpose:** Area utama untuk menampilkan kode dengan syntax highlighting
+
+| Features |
+|----------|
+| Syntax highlighting per line |
+| Line numbers |
+| Cursor blinking |
+| Auto-scroll to bottom |
+| Empty state message |
+
+#### `components/StatusBar.tsx`
+**Purpose:** Status bar dengan informasi file dan typing status
+
+| Info Displayed |
+|----------------|
+| Typing status (Ready/Typing/Paused/Done) |
+| Line & column position |
+| File encoding (UTF-8) |
+| Language name |
+| IntelliSense status |
+| Audio status |
+
+#### `components/TabBar.tsx`
+**Purpose:** Tab file seperti VS Code
+
+#### `components/Breadcrumb.tsx`
+**Purpose:** Path breadcrumb navigation
+
+#### `components/Minimap.tsx`
+**Purpose:** Preview kode di sisi kanan
+
+---
+
+#### `hooks/useTypingEngine.ts`
+**Purpose:** Core engine untuk animasi typing
+
+| Method | Description |
+|--------|-------------|
+| `startTyping()` | Mulai animasi typing |
+| `pauseTyping()` | Pause/resume animasi |
+| `stopTyping()` | Stop dan reset posisi |
+| `resetAll()` | Reset semua state |
+
+**Features:**
+- Async typing loop dengan cancellation
+- Variable speed untuk natural feel
+- Typo simulation dengan nearby keys
+- Autocomplete integration
+- Audio synchronization
+
+---
+
+#### `utils/tokenizer.ts`
+**Purpose:** Syntax highlighting tokenizer
+
+| Token Types |
+|-------------|
+| `keyword` - Reserved words (const, function, etc) |
+| `string` - String literals |
+| `comment` - Comments |
+| `number` - Numeric literals |
+| `function` - Function names |
+| `boolean` - true/false/null/undefined |
+| `operator` - Operators |
+| `tag` - JSX/HTML tags |
+| `decorator` - @decorators |
+
+#### `utils/typo.ts`
+**Purpose:** Realistic typo generation
+
+```typescript
+// Menggunakan nearby keys pada keyboard
+getRandomTypo('a') // Returns 's', 'q', 'w', or 'z'
+```
+
+#### `utils/editorStats.ts`
+**Purpose:** Editor statistics calculation
+
+```typescript
+getEditorStats(code) // { lineCount, lastLineLength, lines }
+getLanguageName(fileName) // 'TypeScript React'
+```
+
+---
+
+#### `hooks/useEditorScroll.ts`
+**Purpose:** Intelligent auto-scrolling for the code editor
+
+| Feature | Description |
+|---------|-------------|
+| Vertical scroll | Follow cursor as it moves down |
+| Horizontal scroll | Follow cursor on long lines |
+| Smart reset | Scroll back to left on new line |
+| Smooth animation | CSS smooth scroll behavior |
+
+```typescript
+const { getCursorInfo } = useEditorScroll({
+  containerRef,    // Ref to scroll container
+  displayedCode,   // Current displayed code
+  isTyping,        // Whether typing is active
+});
+
+// Returns cursor position info
+getCursorInfo() // { cursorX, cursorY, currentCol, currentLine }
+```
+
+---
+
+### 💡 Autocomplete Feature (`src/features/autocomplete/`)
+
+#### `components/AutocompletePopup.tsx`
+**Purpose:** IntelliSense-style autocomplete popup
+
+| Features |
+|----------|
+| Smart positioning (above/below cursor) |
+| Suggestion list with icons |
+| Detail panel |
+| Keyboard-style selection animation |
+
+#### `hooks/useAutocomplete.ts`
+**Purpose:** Autocomplete logic dan positioning
+
+| Method | Description |
+|--------|-------------|
+| `showAcPopup(text, code)` | Show autocomplete |
+| `hideAcPopup()` | Hide autocomplete |
+
+#### `constants/suggestions.ts`
+**Purpose:** Database 100+ suggestions
+
+| Categories |
+|------------|
+| JavaScript/TypeScript keywords |
+| Built-in functions & methods |
+| React hooks |
+| Array/String methods |
+| Common constants |
+
+#### `utils/suggestionHelpers.ts`
+**Purpose:** Suggestion filtering dan ranking
+
+```typescript
+getCurrentWord(text) // Extract word being typed
+getSuggestions(word, code) // Get matching suggestions
+```
+
+---
+
+### 📁 Sidebar Feature (`src/features/sidebar/`)
+
+#### `components/Sidebar.tsx`
+**Purpose:** Main sidebar container
+
+#### `components/CodeInput.tsx`
+**Purpose:** Textarea untuk paste kode
+
+| Features |
+|----------|
+| Character count |
+| Line count |
+| Disabled saat typing |
+
+#### `components/Controls.tsx`
+**Purpose:** Playback dan settings controls
+
+| Controls |
+|----------|
+| Play/Pause/Stop buttons |
+| Progress bar |
+| Speed slider (10-200ms) |
+| Typo rate slider (0-20%) |
+| IntelliSense toggle |
+| File name input |
+
+#### `components/AudioUpload.tsx`
+**Purpose:** Audio file upload dan controls
+
+| Features |
+|----------|
+| File upload (MP3, WAV, etc) |
+| Volume slider |
+| Loop toggle |
+| Remove audio |
+
+#### `components/FileTree.tsx`
+**Purpose:** Decorative file tree display
+
+---
+
+### 🔧 Shared Resources (`src/shared/`)
+
+#### `components/icons/index.tsx`
+**Purpose:** SVG icon components
+
+| Icons |
+|-------|
+| FileIcon, PlayIcon, StopIcon, PauseIcon |
+| ExplorerIcon, SearchIcon |
+| SourceControlIcon, ExtensionsIcon |
+| MusicIcon |
+
+#### `components/TitleBar.tsx`
+**Purpose:** Window title bar dengan traffic light buttons
+
+#### `components/MenuBar.tsx`
+**Purpose:** Menu bar (File, Edit, View, etc)
+
+#### `components/ActivityBar.tsx`
+**Purpose:** Left icon sidebar dengan navigation
+
+#### `components/HighlightedLine.tsx`
+**Purpose:** Single line dengan syntax highlighting
+
+#### `hooks/useCursorBlink.ts`
+**Purpose:** Cursor blinking effect hook
+
+---
+
+### 📦 State Management (`src/store/`)
+
+#### `editorStore.ts`
+**Purpose:** Editor settings dengan localStorage persistence
+
+| State | Type | Description |
+|-------|------|-------------|
+| `fileName` | `string` | Current file name |
+| `sidebarOpen` | `boolean` | Sidebar visibility |
+| `typingSpeed` | `number` | Typing delay (ms) |
+| `typoFrequency` | `number` | Typo rate (%) |
+| `showAutocomplete` | `boolean` | IntelliSense toggle |
+| `inputCode` | `string` | Source code to type |
+
+#### `audioStore.ts`
+**Purpose:** Audio playback state
+
+| State | Type | Description |
+|-------|------|-------------|
+| `audioFileName` | `string` | Uploaded file name |
+| `audioUrl` | `string` | Blob URL |
+| `audioVolume` | `number` | Volume (0-100) |
+| `audioLoop` | `boolean` | Loop toggle |
+| `audioElement` | `HTMLAudioElement` | Audio instance |
+
+| Actions |
+|---------|
+| `playAudio()` |
+| `pauseAudio()` |
+| `resumeAudio()` |
+| `stopAudio()` |
+| `clearAudio()` |
+
+#### `typingStore.ts`
+**Purpose:** Typing animation state
+
+| State | Type | Description |
+|-------|------|-------------|
+| `displayedCode` | `string` | Currently displayed code |
+| `isTyping` | `boolean` | Typing in progress |
+| `isPaused` | `boolean` | Animation paused |
+| `progress` | `number` | Progress percentage |
+| `currentIndex` | `number` | Current char position |
+| `stopFlag` | `number` | Cancellation flag |
+| `acVisible` | `boolean` | Autocomplete visible |
+| `acSuggestions` | `Suggestion[]` | Current suggestions |
+| `acPosition` | `{top, left}` | Popup position |
+
+---
+
+### 📚 Core Library (`src/lib/`)
+
+#### `constants.ts`
+**Purpose:** Application-wide constants
+
+```typescript
+APP_CONFIG        // App metadata
+EDITOR_DEFAULTS   // Default settings
+TYPING_CONFIG     // Typing animation config
+AUDIO_DEFAULTS    // Audio defaults
+UI_CONFIG         // UI dimensions
+KEYBOARD_SHORTCUTS // Shortcut keys
+FILE_EXTENSIONS   // Language mapping
+DEFAULT_CODE      // Initial code template
+```
+
+#### `utils.ts`
+**Purpose:** Utility functions
+
+| Function | Description |
+|----------|-------------|
+| `sleep(ms)` | Async delay |
+| `randomInRange(min, max)` | Random number |
+| `checkProbability(p)` | Probability check |
+| `clamp(val, min, max)` | Clamp number |
+| `getLanguageFromFileName(name)` | Get language |
+| `formatNumber(num)` | Format with locale |
+| `debounce(fn, delay)` | Debounce function |
+| `throttle(fn, limit)` | Throttle function |
+| `deepFreeze(obj)` | Immutable object |
+| `isCodeEmpty(code)` | Check empty code |
+| `countLines(code)` | Count lines |
+| `generateId()` | Unique ID |
+| `cx(...classes)` | Class concatenation |
+
+---
+
+### 🔤 Global Types (`src/types/`)
+
+#### `index.ts`
+**Purpose:** Shared type definitions
+
+```typescript
+type TokenType = 'keyword' | 'string' | 'comment' | ...;
+
+interface Token {
+  type: TokenType;
+  value: string;
+}
+
+interface Suggestion {
+  word: string;
+  kind: string;
+  detail: string;
+}
+
+interface AutocompletePosition {
+  top: number;
+  left: number;
+}
+
+interface EditorStats {
+  lineCount: number;
+  lastLineLength: number;
+  lines: string[];
+}
+```
+
+---
+
+## 🎮 State Management
+
+### Zustand Store Architecture
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                     Components                          │
+└────────────────────────┬────────────────────────────────┘
+                         │
+         ┌───────────────┼───────────────┐
+         ▼               ▼               ▼
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+│ editorStore │  │ audioStore  │  │ typingStore │
+│ (persisted) │  │             │  │             │
+└─────────────┘  └─────────────┘  └─────────────┘
+```
+
+### Store Access Pattern
+
+```typescript
+// Di dalam component
+const fileName = useEditorStore((s) => s.fileName);
+const { playAudio, stopAudio } = useAudioStore();
+const isTyping = useTypingStore((s) => s.isTyping);
+
+// Di luar component (untuk async functions)
+const state = useTypingStore.getState();
+```
+
+---
+
+## 🎨 Customization
+
+### Mengubah Warna Syntax
+
+Edit `src/features/editor/utils/tokenizer.ts`:
+
+```typescript
+export const TOKEN_COLORS: Record<TokenType, string> = {
+  keyword: 'text-[#569cd6]',    // Ubah warna keyword
+  string: 'text-[#ce9178]',     // Ubah warna string
+  // ...
+};
+```
+
+### Menambah Suggestions
+
+Edit `src/features/autocomplete/constants/suggestions.ts`:
+
+```typescript
+export const SUGGESTION_DB: Suggestion[] = [
+  // Tambah suggestion baru
+  { word: 'myFunction', kind: 'function', detail: 'Custom function' },
+];
+```
+
+### Mengubah Default Settings
+
+Edit `src/lib/constants.ts`:
+
+```typescript
+export const EDITOR_DEFAULTS = {
+  typingSpeed: 50,      // Default speed
+  typoFrequency: 5,     // Default typo rate
+  // ...
+};
+```
+
+---
+
+## 🔌 API Reference
+
+### useTypingEngine Hook
+
+```typescript
+const {
+  startTyping,   // () => void
+  pauseTyping,   // () => void
+  stopTyping,    // () => void
+  resetAll,      // () => void
+} = useTypingEngine();
+```
+
+### useAutocompleteEngine Hook
+
+```typescript
+const {
+  showAcPopup,   // (text: string, fullCode: string) => void
+  hideAcPopup,   // () => void
+} = useAutocompleteEngine();
+```
+
+### Store Actions
+
+```typescript
+// Editor Store
+useEditorStore.getState().setTypingSpeed(100);
+useEditorStore.getState().setInputCode('const x = 1;');
+
+// Audio Store
+useAudioStore.getState().playAudio();
+useAudioStore.getState().setAudioVolume(75);
+
+// Typing Store
+useTypingStore.getState().resetAll();
+```
+
+---
+
+## 🧪 Development
+
+### Commands
+
+```bash
+npm run dev      # Start dev server
+npm run build    # Production build
+npm run preview  # Preview build
+npm run lint     # Run ESLint
+npm run typecheck # TypeScript check
+```
+
+### Adding New Features
+
+1. Create folder di `src/features/[feature-name]/`
+2. Buat struktur: `components/`, `hooks/`, `utils/`, `types/`
+3. Export dari `index.ts`
+4. Tambahkan ke `src/features/index.ts`
 
 ---
 
 ## 📄 License
 
-```
-MIT License
-
-Copyright (c) 2024 Auto Code Typer
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-## ⭐ Star This Repo
+<div align="center">
 
-Jika project ini membantu, berikan ⭐ star di GitHub! Terima kasih! 🙏
+**Built with ❤️ using React + TypeScript + Tailwind CSS**
 
----
-
-<p align="center">
-  Made with ❤️ and ☕ | Auto Code Typer v1.0.0
-</p>
+</div>
